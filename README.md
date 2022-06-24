@@ -10,5 +10,5 @@ Once the game starts, prompt the user to type in rock/paper/scissors
     Once user inputs valid selection, let the computer generate a random selection from rock/paper/scissor
     Compare user's selection with computer's selection and prompt user with result 
     Store the single round result into memory prompt user for a new round
-Repeat steps from lines 9-12 until 5 rounds game are compeleted
+Repeat steps from lines 9-12 until 5 rounds game are completed
 Prompt user with the final result and reset the game
