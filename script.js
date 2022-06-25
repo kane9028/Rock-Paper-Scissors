@@ -19,8 +19,10 @@ function playRound() {
     // Once user inputs valid selection, let the computer generate a random selection from rock/paper/scissor
     let computerSelection = computerPlay();
     // Compare user's selection with computer's selection to get the result and alert user with result 
-    let result = playerWon(playerSelection.toLowerCase(),computerSelection);
-    result ? alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nCongraduation! You won this round!`) : alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nUnfortunatly, You lost this round.`);
+    let result = compareResult(playerSelection.toLowerCase(),computerSelection);
+    if(result === "won") alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nCongraduation! You won this round!`);
+    if(result === "lost") alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nUnfortunatly, You lost this round.`);
+    if(result === "draw") alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nDraw game.`);
     // Return the result
     return result;
 }
@@ -28,20 +30,25 @@ function playRound() {
 function game() {
     // store each single round result into local memory
     let result = {};
+    result.playerWonCount = 0;
+    result.computerWonCount = 0;
+    result.drawGame = 0;
     // Repeat playround until 5 rounds game are completed, store result to local memory
     for(let i=0; i<5; i++){
         alert(`Round ${i+1} of 5!`);
-        if(playRound()){
-            result.playerWonCount ? result.playerWonCount += 1 : result.playerWonCount = 1;
-        } else {
-            result.computerWenCount ? result.computerWenCount +=1 : result.computerWenCount = 1;
+        if (playRound()==="won") {
+            result.playerWonCount += 1;
+        } else if (playRound()==="lost") {
+            result.computerWonCount += 1;
+        } if (playRound()==="draw") {
+            result.drawGame += 1;
         }
     }
     // Alert user with the final result and quit the game
-    alert(`After 5 round of gameplay, you have won ${result.playerWonCount} times, computer have won ${result.computerWenCount} times.`);
-    if( result.playerWonCount > result.computerWenCount ) alert(`Congraduation! You are the Final Winner!`);
-    if( result.playerWonCount < result.computerWenCount ) alert(`Sadly, You are the Final loser.`);
-    if( result.playerWonCount === result.computerWenCount ) alert(`Unbelievable! You made Five draw in a roll.`);
+    alert(`After 5 round of gameplay, \nyou have won ${result.playerWonCount} times, \ncomputer have won ${result.computerWonCount} times, \ndraw ${result.drawGame} times.`);
+    if( result.playerWonCount > result.computerWonCount ) alert(`Congraduation! You are the Final Winner!`);
+    if( result.playerWonCount < result.computerWonCount ) alert(`Sadly, You are the Final loser.`);
+    if( result.playerWonCount === result.computerWonCount ) alert(`Unbelievable! You made Five draw in a roll.`);
 
 }
 
@@ -58,6 +65,12 @@ function checkValidation(inputStr, arrOfValidation) {
 }
 
 //To check if player won in single round
-function playerWon(playerSelection, computerSelection) {
-    return (playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock");
+function compareResult(playerSelection, computerSelection) {
+    if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
+        return "won";
+    } else if (playerSelection === computerSelection) {
+        return "draw"
+    } else {
+        return "lost"
+    }
 }
