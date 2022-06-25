@@ -1,11 +1,15 @@
-// Confirm with the user to start the game
-let confirmGamePlay = confirm("Would you like to play a game - Rock! Paper! Scissors! ?");
-//     YES-start the game
-//     NO-Quit the game
-if(confirmGamePlay){
-    game();//rename function to game according to requirement to run playRound() 5 times
-} else {
-    alert("See you!")
+greating();
+
+function greating() {
+    // Confirm with the user to start the game
+    let confirmGamePlay = confirm("Would you like to play a game - Rock! Paper! Scissors! ?");
+    //     YES-start the game
+    //     NO-Quit the game
+    if(confirmGamePlay){
+        game();//rename function to game according to requirement to run playRound() 5 times
+    } else {
+        alert("See you!");
+    }
 }
 
 function playRound() {
@@ -46,7 +50,8 @@ function game() {
     if( result.playerWonCount > result.computerWonCount ) alert(`Congraduation! You are the Final Winner!`);
     if( result.playerWonCount < result.computerWonCount ) alert(`Sadly, You are the Final loser.`);
     if( result.playerWonCount === result.computerWonCount ) alert(`Finally, no winner no loser.`);
-
+    // confirm if user want to play again;
+    if(confirm('Confirm to restart the game, cancel to quit the game.')) greating();
 }
 
 //declare a function to generate a random selection 
