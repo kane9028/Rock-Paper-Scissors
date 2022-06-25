@@ -36,19 +36,16 @@ function game() {
     // Repeat playround until 5 rounds game are completed, store result to local memory
     for(let i=0; i<5; i++){
         alert(`Round ${i+1} of 5!`);
-        if (playRound()==="won") {
-            result.playerWonCount += 1;
-        } else if (playRound()==="lost") {
-            result.computerWonCount += 1;
-        } if (playRound()==="draw") {
-            result.drawGame += 1;
-        }
+        let singleRoundResult = playRound();
+        if (singleRoundResult==="won") result.playerWonCount += 1;
+        if (singleRoundResult==="lost") result.computerWonCount += 1;
+        if (singleRoundResult==="draw") result.drawGame += 1;
     }
     // Alert user with the final result and quit the game
     alert(`After 5 round of gameplay, \nyou have won ${result.playerWonCount} times, \ncomputer have won ${result.computerWonCount} times, \ndraw ${result.drawGame} times.`);
     if( result.playerWonCount > result.computerWonCount ) alert(`Congraduation! You are the Final Winner!`);
     if( result.playerWonCount < result.computerWonCount ) alert(`Sadly, You are the Final loser.`);
-    if( result.playerWonCount === result.computerWonCount ) alert(`Unbelievable! You made Five draw in a roll.`);
+    if( result.playerWonCount === result.computerWonCount ) alert(`Finally, no winner no loser.`);
 
 }
 
