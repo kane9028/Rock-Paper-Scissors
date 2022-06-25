@@ -13,7 +13,7 @@ function playRound() {
     let playerSelection = prompt("Please input your selection from rock/paper/scissors: ");
     // if the user's input is invalid, push an error message and ask the user to input the selection again
     let selections = ["rock", "paper", "scissors"];
-    while (!checkValidation(playerSelection.toLowerCase(), selections)) {
+    while (checkValidation(playerSelection.toLowerCase(), selections) === false) {
         playerSelection = prompt(`Your input, ${playerSelection}, is invalid. Please input your selection from rock/paper/scissors: `);
     } 
     // Once user inputs valid selection, let the computer generate a random selection from rock/paper/scissor
@@ -54,7 +54,7 @@ function computerPlay() {
 
 //check validation of input
 function checkValidation(inputStr, arrOfValidation) {
-    arrOfValidation.indexOf(inputStr) === -1 ? false : true;
+    return arrOfValidation.indexOf(inputStr) === -1 ? false : true;
 }
 
 //To check if player won in single round
