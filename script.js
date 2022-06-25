@@ -42,3 +42,8 @@ function computerPlay() {
 function checkValidation(inputStr, arrOfValidation) {
     arrOfValidation.indexOf(inputStr) === -1 ? false : true;
 }
+
+//To check if player won in single round
+function playerWon(playerSelection, computerSelection) {
+    return (playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock");
+}
