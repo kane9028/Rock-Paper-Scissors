@@ -10,8 +10,14 @@ if(confirmGamePlay){
 
 function playRound(playerSelection, computerSelection) {
 // Once the game starts, prompt the user to type in rock/paper/scissors
+    playerSelection = prompt("Please input your selection from rock/paper/scissors: ");
     // if the user's input is invalid, push an error message and ask the user to input the selection again
+    let selections = ["rock", "paper", "scissors"];
+    while (!checkValidation(playerSelection.toLowerCase(), selections)) {
+        playerSelection = prompt(`Your input, ${playerSelection}, is invalid. Please input your selection from rock/paper/scissors: `);
+    } 
     // Once user inputs valid selection, let the computer generate a random selection from rock/paper/scissor
+    computerSelection = computerPlay();
     // Compare user's selection with computer's selection to get the result and prompt user with result 
     // Return the result
 }
@@ -25,4 +31,9 @@ function game() {
 //declare a function to generate a random selection 
 function computerPlay() {
 
+}
+
+//check validation of input
+function checkValidation(inputStr, arrOfValidation) {
+    arrOfValidation.indexOf(inputStr) === -1 ? false : true;
 }
