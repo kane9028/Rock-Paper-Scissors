@@ -30,7 +30,9 @@ function game() {
 
 //declare a function to generate a random selection 
 function computerPlay() {
-
+    let selections = ["rock", "paper", "scissors"];// selection pool
+    let randomNum = Math.floor(Math.random()*3); // generate random num between 0-2
+    return selections[randomNum];// return computer's selection
 }
 
 //check validation of input
