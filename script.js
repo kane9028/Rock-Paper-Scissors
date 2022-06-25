@@ -18,8 +18,11 @@ function playRound(playerSelection, computerSelection) {
     } 
     // Once user inputs valid selection, let the computer generate a random selection from rock/paper/scissor
     computerSelection = computerPlay();
-    // Compare user's selection with computer's selection to get the result and prompt user with result 
+    // Compare user's selection with computer's selection to get the result and alert user with result 
+    let result = playerWon(playerSelection.toLowerCase(),computerSelection);
+    result ? alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nCongraduation! You won this round!`) : alert(`Your selection: ${playerSelection}\nComputer's selection: ${computerSelection}\nUnfortunatly, You lost this round.`);
     // Return the result
+    return result;
 }
 
 function game() {
