@@ -1,4 +1,4 @@
-// result to store the game data
+// store the game data
 const scoreData = {
     playerWonCount : 0,
     computerWonCount : 0,
@@ -20,7 +20,7 @@ function singleRound(e) {
     let playerSelection = e.target.className;
     // let the computer generate a random selection from rock/paper/scissor
     let computerSelection = computerPlay();
-    // Compare user's selection with computer's selection to get the result and alert user with result 
+    // Compare user's selection with computer's selection to get the result and update score data
     let result = compareResult(playerSelection.toLowerCase(),computerSelection);
     if(result === "won") scoreData.playerWonCount += 1;
     if(result === "lost") scoreData.computerWonCount += 1;
@@ -35,8 +35,10 @@ function singleRound(e) {
 function updateScore() {
     const playerScore = document.querySelector("#player>.score");
     const computerScore = document.querySelector("#computer>.score");
+    const draw = document.querySelector("#draw>.score");
     playerScore.textContent = scoreData.playerWonCount;
     computerScore.textContent = scoreData.computerWonCount;
+    draw.textContent = scoreData.drawGame;
 }
 
 function resultMessage(str) {
