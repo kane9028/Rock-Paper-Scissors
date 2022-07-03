@@ -22,3 +22,15 @@ Once the game starts, prompt the user to type in rock/paper/scissors
 Repeat steps from lines 9-12 until 5 rounds game are completed
 
 Prompt the user with the final result and reset the game
+
+*******************************************************
+
+To add UI, all prompts and alerts need to be removed from script.js, and eventListienrs will be implanted to allow UI.
+
+Below is the general description of the UI for this project:
+
+    There will be a score panel to show the player and computer's scores and three buttons, rock/paper/scissors, to receive the player's decisions.
+
+    Each time when the player pushes a button, the score will be updated according to the single round result.
+
+    Once either the player or computer reached a score of 5, the game is ended, and a message will be printed on the page to declare the final result.
