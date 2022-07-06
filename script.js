@@ -73,10 +73,14 @@ function pushTolog(playerSelection, computerSelection, singleResult, round) {
         logInfo += ` You ${singleResult.toUpperCase()} this round.\n\n`
     }
     if (scoreData.playerWonCount === 5) {
-        logInfo += `Congralation! After ${round} rounds, you have defeated computer 5 times. You WON!`;
+        let finalText = `Congralation! After ${round} rounds, you have defeated computer 5 times. You WON!`;
+        logInfo += finalText;
+        alert(finalText);
     }
     if (scoreData.computerWonCount === 5) {
-        logInfo += `Unfortunately! After ${round} rounds, you have been defeated by computer 5 times. You LOST.`;
+        let finalText = `Unfortunately! After ${round} rounds, you have been defeated by computer 5 times. You LOST.`;
+        logInfo += finalText;
+        alert(finalText);
     }
     log.value += logInfo;
     log.scrollTop = log.scrollHeight;
