@@ -2,7 +2,8 @@
 const scoreData = {
     playerWonCount : 0,
     computerWonCount : 0,
-    drawGame : 0
+    drawGame : 0,
+    roundCount : 0
 };
 
 
@@ -16,12 +17,13 @@ sciccorsBtn.addEventListener("click", singleRound);
 
 
 function singleRound(e) {
+    scoreData.roundCount += 1;
 
     let playerSelection = e.target.className;
     // let the computer generate a random selection from rock/paper/scissor
     let computerSelection = computerPlay();
     // Compare user's selection with computer's selection to get the result and update score data
-    let result = compareResult(playerSelection.toLowerCase(),computerSelection);
+    let result = compareResult(playerSelection,computerSelection);
     if(result === "won") scoreData.playerWonCount += 1;
     if(result === "lost") scoreData.computerWonCount += 1;
     if(result === "draw") scoreData.drawGame += 1;
@@ -30,6 +32,9 @@ function singleRound(e) {
     // push result message to the page once either reached 5 wons
     if(scoreData.playerWonCount === 5) resultMessage("Player");
     if(scoreData.computerWonCount === 5) resultMessage("Computer");
+
+    //push result info of each round to log
+    pushTolog(playerSelection, computerSelection, result, scoreData.roundCount);
 }
 
 function updateScore() {
@@ -62,4 +67,19 @@ function compareResult(playerSelection, computerSelection) {
     } else {
         return "lost"
     }
+}
+
+function pushTolog(playerSelection, computerSelection, singleResult, round) {
+    const log = document.querySelector("#log");
+    const logInfo = document.createElement("div");
+    logInfo.classList.add("logInfo");
+    logInfo.textContent = `Round ${round}: You selected ${playerSelection}, Computer selected ${computerSelection}.\n`; 
+    if (singleResult === "draw") { 
+        const text = document.createTextNode(`It's a ${singleResult}.`);
+        logInfo.appendChild(text);
+    } else {
+        const text = document.createTextNode(`You ${singleResult}`);
+        logInfo.appendChild(text);
+    }
+    log.appendChild(logInfo);
 }
