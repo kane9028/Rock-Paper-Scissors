@@ -66,25 +66,20 @@ function compareResult(playerSelection, computerSelection) {
 
 function pushTolog(playerSelection, computerSelection, singleResult, round) {
     const log = document.querySelector("#log");
-    const logInfo = document.createElement("div");
-    logInfo.classList.add("logInfo");
-    logInfo.textContent = `Round ${round}: You selected ${playerSelection}, Computer selected ${computerSelection}.`; 
+    let logInfo = `Round ${round}: You selected ${playerSelection}, Computer selected ${computerSelection}.`; 
     if (singleResult === "draw") { 
-        const text = document.createTextNode(`\nIt's a ${singleResult}.`);
-        logInfo.appendChild(text);
+        logInfo += ` It's a ${singleResult.toUpperCase()}.\n\n`;
     } else {
-        const text = document.createTextNode(`\nYou ${singleResult} this round.`);
-        logInfo.appendChild(text);
+        logInfo += ` You ${singleResult.toUpperCase()} this round.\n\n`
     }
     if (scoreData.playerWonCount === 5) {
-        const text = document.createTextNode(`\nCongralation! After ${round} rounds, you have defeated computer 5 times. You Won!`);
-        logInfo.appendChild(text);
+        logInfo += `Congralation! After ${round} rounds, you have defeated computer 5 times. You WON!`;
     }
     if (scoreData.computerWonCount === 5) {
-        const text = document.createTextNode(`\nUnfortunately! After ${round} rounds, you have been defeated by computer 5 times. You Lost.`);
-        logInfo.appendChild(text);
+        logInfo += `Unfortunately! After ${round} rounds, you have been defeated by computer 5 times. You LOST.`;
     }
-    log.appendChild(logInfo);
+    log.value += logInfo;
+    log.scrollTop = log.scrollHeight;
 }
 
 function restartGame() {
