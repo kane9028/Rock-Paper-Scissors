@@ -11,10 +11,11 @@ const scoreData = {
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector(".paper");
 const sciccorsBtn = document.querySelector(".scissors");
+const restartBtn = document.querySelector('.restart');
 rockBtn.addEventListener("click", singleRound);
 paperBtn.addEventListener("click", singleRound);
 sciccorsBtn.addEventListener("click", singleRound);
-
+restartBtn.addEventListener("click", restartGame);
 
 function singleRound(e) {
     if(scoreData.playerWonCount !== 5 && scoreData.computerWonCount !== 5) {
@@ -84,4 +85,15 @@ function pushTolog(playerSelection, computerSelection, singleResult, round) {
         logInfo.appendChild(text);
     }
     log.appendChild(logInfo);
+}
+
+function restartGame() {
+    scoreData.playerWonCount = 0;
+    scoreData.computerWonCount = 0;
+    scoreData.drawGame = 0;
+    scoreData.roundCount = 0;
+    updateScore();
+    //reset the log
+    const log = document.querySelector("#log");
+    log.textContent = "Result log:"
 }
