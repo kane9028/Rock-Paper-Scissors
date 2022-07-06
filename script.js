@@ -17,24 +17,26 @@ sciccorsBtn.addEventListener("click", singleRound);
 
 
 function singleRound(e) {
-    scoreData.roundCount += 1;
+    if(scoreData.playerWonCount !== 5 && scoreData.computerWonCount !== 5) {
+        scoreData.roundCount += 1;
 
-    let playerSelection = e.target.className;
-    // let the computer generate a random selection from rock/paper/scissor
-    let computerSelection = computerPlay();
-    // Compare user's selection with computer's selection to get the result and update score data
-    let result = compareResult(playerSelection,computerSelection);
-    if(result === "won") scoreData.playerWonCount += 1;
-    if(result === "lost") scoreData.computerWonCount += 1;
-    if(result === "draw") scoreData.drawGame += 1;
-    //update score each time when player click button
-    updateScore();
+        let playerSelection = e.target.className;
+        // let the computer generate a random selection from rock/paper/scissor
+        let computerSelection = computerPlay();
+        // Compare user's selection with computer's selection to get the result and update score data
+        let result = compareResult(playerSelection,computerSelection);
+        if(result === "won") scoreData.playerWonCount += 1;
+        if(result === "lost") scoreData.computerWonCount += 1;
+        if(result === "draw") scoreData.drawGame += 1;
+        //update score each time when player click button
+        updateScore();
+        
+        //push result info of each round to log
+        pushTolog(playerSelection, computerSelection, result, scoreData.roundCount);
+    }
     // push result message to the page once either reached 5 wons
     if(scoreData.playerWonCount === 5) resultMessage("Player");
     if(scoreData.computerWonCount === 5) resultMessage("Computer");
-
-    //push result info of each round to log
-    pushTolog(playerSelection, computerSelection, result, scoreData.roundCount);
 }
 
 function updateScore() {
