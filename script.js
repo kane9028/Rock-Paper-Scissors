@@ -35,9 +35,6 @@ function singleRound(e) {
         //push result info of each round to log
         pushTolog(playerSelection, computerSelection, result, scoreData.roundCount);
     }
-    // push result message to the page once either reached 5 wons
-    if(scoreData.playerWonCount === 5) resultMessage("Player");
-    if(scoreData.computerWonCount === 5) resultMessage("Computer");
 }
 
 function updateScore() {
@@ -47,11 +44,6 @@ function updateScore() {
     playerScore.textContent = scoreData.playerWonCount;
     computerScore.textContent = scoreData.computerWonCount;
     draw.textContent = scoreData.drawGame;
-}
-
-function resultMessage(str) {
-    const result = document.querySelector("#resultMessage");
-    result.textContent = `${str} Won.`;
 }
 
 //declare a function to generate a random selection 
@@ -76,12 +68,20 @@ function pushTolog(playerSelection, computerSelection, singleResult, round) {
     const log = document.querySelector("#log");
     const logInfo = document.createElement("div");
     logInfo.classList.add("logInfo");
-    logInfo.textContent = `Round ${round}: You selected ${playerSelection}, Computer selected ${computerSelection}.\n`; 
+    logInfo.textContent = `Round ${round}: You selected ${playerSelection}, Computer selected ${computerSelection}.`; 
     if (singleResult === "draw") { 
-        const text = document.createTextNode(`It's a ${singleResult}.`);
+        const text = document.createTextNode(`\nIt's a ${singleResult}.`);
         logInfo.appendChild(text);
     } else {
-        const text = document.createTextNode(`You ${singleResult}`);
+        const text = document.createTextNode(`\nYou ${singleResult} this round.`);
+        logInfo.appendChild(text);
+    }
+    if (scoreData.playerWonCount === 5) {
+        const text = document.createTextNode(`\nCongralation! After ${round} rounds, you have defeated computer 5 times. You Won!`);
+        logInfo.appendChild(text);
+    }
+    if (scoreData.computerWonCount === 5) {
+        const text = document.createTextNode(`\nUnfortunately! After ${round} rounds, you have been defeated by computer 5 times. You Lost.`);
         logInfo.appendChild(text);
     }
     log.appendChild(logInfo);
