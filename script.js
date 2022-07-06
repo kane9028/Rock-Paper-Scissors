@@ -90,5 +90,5 @@ function restartGame() {
     updateScore();
     //reset the log
     const log = document.querySelector("#log");
-    log.textContent = "Result log:"
+    log.value = "";
 }
